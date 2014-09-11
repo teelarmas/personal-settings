@@ -1,0 +1,81 @@
+[user]
+	name = Tyler Moore
+	email = tmoore@nestlabs.com
+[core]
+    editor = vi
+    # Avoid putting platform-dependent newlines in your check-in
+    #autocrlf = input
+
+[branch]
+    # http://mislav.uniqpath.com/2013/02/merge-vs-rebase/
+    # "Avoid merge commits that result from git pull"
+    autosetuprebase = always
+    # Sets up remote tracking.  This is the default now, so maybe not important.  I keep it for hysterical reasons.
+    autosetupmerge = true
+
+[push]
+    # Avoid pushing things you don't mean to, some like `default = current`
+    # this makes you say what you mean
+    default = nothing
+
+[color]
+    ui = auto
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+
+[alias]
+    st = status
+    ci = commit
+    br = branch
+    co = checkout
+    df = diff
+    dno = diff --name-only
+    lg = log -p
+    log1 = log --date=relative --format=\"%h | %ad | %s | %an\"
+    lol = log --graph --decorate=full --pretty=oneline --abbrev-commit
+    logf = log --name-only
+    lola = log --graph --decorate=full --pretty=oneline --abbrev-commit --all
+    ls = ls-files
+[merge]
+    tool = meld # This will be the default merge tool invoked by git mergetool.
+[mergetool "meld"]
+    cmd = meld
+[mergetool "bc3"]
+    cmd = /home/tylermoore/tools/bcompare/bcompare.sh \
+        "$PWD/$LOCAL" \
+        "$PWD/$REMOTE" \
+        "$PWD/$BASE" \
+  "$PWD/$MERGED" 
+    keepBackup = false
+    trustExitCode = false
+[tool]
+    guitool = bc3
+
+[diff]
+    tool = meld
+
+#cmd = /home/zenerino/tools/bcompare/bcompare.sh \
+[difftool "vimdiff"]
+    cmd = /usr/bin/vimdiff \
+        "$LOCAL" \
+        "$REMOTE"
+[difftool "bc3"]
+        cmd = /home/tylermoore/tools/bcompare/bcompare.sh \
+        "$LOCAL" \
+        "$REMOTE"
+
+[difftool "meld"]
+    cmd = meld
+#[commit]
+#    template = /home/tylermoore/.git-checkin-template
